@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+build/
+dist/
+
+# Büyük girdiler ve çalışma çıktıları
+girdiler/
+calisma/
+.runtime/
+
+# Rhino eklentisinin derleme çıktıları
+bin/
+obj/
+
+# Rhino ve Office geçici dosyaları
+*.3dmbak
+*.rhl
+~$*

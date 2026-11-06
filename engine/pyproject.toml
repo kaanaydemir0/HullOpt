@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hullopt"
+version = "0.6.0"
+description = "Hull form resistance optimisation: geometry, hydrostatics, resistance backends, search; JSON-RPC service for the Rhino plug-in."
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",             # material-line energy uses np.trapezoid
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+  "pydantic>=2.0",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+windows = ["pywin32"]       # only for the Maxsurf COM adapter
+test = ["pytest"]           # tests are plain unittest; pytest is optional
+
+[project.scripts]
+hullopt = "hullopt.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["hullopt*"]
