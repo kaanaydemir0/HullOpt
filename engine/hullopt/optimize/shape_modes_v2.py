@@ -1,6 +1,6 @@
 """Smooth (C2) control-point deformation modes, version 2.
 
-Eight modes bend a baseline hull without redrawing it. The rules (from the STUDY-002 fairness fix on
+Eight modes bend a baseline hull without redrawing it. The rules (from the fairness fix on
 the first test hull):
   * every weight is C2: quintic smootherstep S5 or the C2 bump 64 t^3 (1-t)^3, clamped only where the
     function is flat to second order (so a clamp never creates a kink);
@@ -51,7 +51,7 @@ class ModeFrameV2:
     """Where the modes act; lengths in metres, model axes.
 
     The top curve z_top(x) is either a natural cubic spline through (top_x, top_z), which is what
-    ``derive_frame`` produces, or the explicit form used by STUDY-002: a level aft part, an S5 blend,
+    ``derive_frame`` produces, or the explicit form used in the first test hull's study: a level aft part, an S5 blend,
     then a polynomial in u = (x - sheer_xc) / sheer_xs.
     """
     x_aft: float                 # aft end of the waterline
@@ -75,7 +75,7 @@ class ModeFrameV2:
     deadrise_core_m: float       # smooth symmetric keel core; abs(y) has a cusp at y=0
     top_x: tuple = ()            # spline top curve
     top_z: tuple = ()
-    z_top_aft: float | None = None   # explicit top curve (STUDY-002)
+    z_top_aft: float | None = None   # explicit top curve (first test hull's study)
     x_top_b0: float | None = None
     x_top_b1: float | None = None
     sheer_xc: float | None = None

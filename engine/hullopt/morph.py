@@ -240,7 +240,7 @@ class MorphModel:
             gates.append({"name": name, "value": value, "limit": limit, "unit": LIMIT_UNITS[name],
                           "pass": abs(value) <= limit + 1e-12, "excess": max(0.0, abs(value) / limit - 1)})
         if fairness is not None:
-            # "excess" is each gate's normalised violation (0 when it passes), as in STUDY-002's
+            # "excess" is each gate's normalised violation (0 when it passes), as in the first test hull's
             # constrained search: counts as counts, the rest relative to their thresholds.
             p = self.plan
             energy = fairness["energy_ratio"].values()

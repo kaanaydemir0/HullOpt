@@ -6,6 +6,10 @@ Rhino 7 için gövde formu direnç optimizasyonu eklentisi. Gövdeyi Rhino'da se
 
 Kişisel öğrenci projesi; CFD yok. Araç genel amaçlıdır: gövdeye özgü değerler motorun varsayılanlarında değil, gövdenin kendisinden ve paneldeki ayarlardan gelir. Eklentinin arayüzü İngilizce, belgeler Türkçe.
 
+![Optimise sekmesi: örnek gövdede 600 değerlendirmelik aramanın sonucu](docs/img/optimise_sonuc.png)
+
+*Optimise sekmesi, [örnek gövde](docs/ornek): 600 değerlendirmede en iyi J 0,98091 (−%1,91), 175 aday kapılardan geçti (Python). J, adayları başlangıç gövdesiyle aynı modelde karşılaştırır; doğrulanmış bir direnç kazancı değildir.*
+
 ## Ne yapar
 
 | Sekme | İş |
@@ -22,6 +26,8 @@ Hesaplar ayrı süreçte çalışan Python motorunda yapılır; eklenti onunla s
 
 ## Belgeler
 
+- [Tanıtım ve kullanım kılavuzu (PDF, 30 sayfa)](docs/HullOpt_Kullanim_Kilavuzu_v0.5.2.pdf): HullOpt nedir, kurulum, panel ve her sekme, optimizasyonun içi, doğruluk ve sınırlar, sorun giderme; bütün ekran görüntüleri örnek gövdeyle.
+- [Örnek gövde](docs/ornek): kılavuzdaki gövdeyi Rhino'da kuran betik ve gövdenin NURBS verisi; kılavuzun adımları ve sayıları bununla tekrarlanabilir.
 - [Eklenti notları](rhino/README.md): sekmeler, komutlar, dosyalar, derleme ve yükleme, hata ayıklama.
 - [Değişiklik günlüğü](CHANGELOG.md)
 
@@ -41,6 +47,8 @@ Hesaplar ayrı süreçte çalışan Python motorunda yapılır; eklenti onunla s
 5. `HoPanel` komutu paneli açar. Eklenti motoru, `.rhp` dosyasının klasöründen yukarı doğru `.venv` ve `engine\hullopt` içeren klasörü arayarak bulur; başka yerdeyse `HULLOPT_PROJECT` ortam değişkenini verin.
 
 ## Hızlı başlangıç
+
+Örnek gövdeyle denemek için önce [docs/ornek](docs/ornek) içindeki betikle gövdeyi kurun; ayarlar da yazılır.
 
 1. **Hull** → *Select hull surfaces*: gövdenin dış kabuğunu güverte kenarına kadar seçin. Kabuk su hattının altında kapalı olmalı.
 2. **Condition**: su, su hattı z'si ya da deplasman, hızlar.
@@ -65,7 +73,7 @@ Depoya girmeyenler (`.gitignore`): `girdiler/` (büyük geometri girdileri), `ca
 
 ## Testler
 
-`testler.cmd` motorun testlerini çalıştırır; günlük `calisma\test_gunlugu.txt`. Testler yapay gövdelerle (kutu, parabolik gövde, Wigley) çalışır. Bir yat projesinin verisine dayanan testler (hidrostatik ve direnç altın kaydı, referans hesap tablosuyla eşitleme) bu depoda yok.
+`testler.cmd` motorun testlerini çalıştırır; günlük `calisma\test_gunlugu.txt`. 230 test yapay gövdelerle (kutu, yarım silindir, parabolik gövde, Wigley) çalışır. Bir yat projesinin verisine dayanan testler (hidrostatik ve direnç altın kaydı, referans hesap tablosuyla eşitleme) bu depoda yok.
 
 ## Durum ve sınırlar
 
@@ -75,6 +83,7 @@ Depoya girmeyenler (`.gitignore`): `girdiler/` (büyük geometri girdileri), `ca
 - Holtrop ve sevk hesabı, aynı girdilerle bir referans hesap tablosunun sonucunu 10⁻¹⁴ düzeyinde tekrar ediyor (Python); o tablo ve test verisi bu depoda yok.
 - Michell'in mutlak değeri ayna kapanışına çok duyarlıdır; yalnız iki gövdeyi aynı ayarlarla karşılaştırmak için kullanılır.
 - Hesabın başında gövde arayüz iş parçacığında dışa aktarılır; büyük gövdelerde Rhino bir an duraklar.
+- Bilinen sorun: düzgünlük çizgilerinden biri gövde ağının tepe noktalarından tam geçen bir düzlemle kesilirse Morph ve Optimise "Curve has no positive length" hatasıyla durur (analitik bir Wigley gövdesinde standart ağla görüldü). Hull sekmesinde *Fine surface mesh* işaretlenince ağ değişir ve hata kalkar.
 
 ## Çalışma kuralları
 

@@ -9,6 +9,7 @@ Düzeltme: Optimise ve Morph sekmelerinde Rhino'nun takılması. Motor ve hesapl
 - **Neden:** Optimise'ın mod tablosunda, Morph'un mod ve sınır tablolarında etiketler satır kaydırıyordu (Eto'nun varsayılanı). Sayfa panelden genişken WPF bu tablolarda düzeni durmadan yeniden hesaplıyordu; her düzen 1,3–1,9 s sürdüğü için Rhino arama boyunca ve sonrasında donup çözülüyordu. 0.5'te uzun aramada görülen yavaşlamanın nedeni de buydu.
 - **Düzeltme:** başka hücrelerle aynı tablo satırındaki etiketler tek satır: `Ui.Field` ve `Ui.Unit` kaydırmaz, tablolardaki gri notlar yeni `Ui.Hint` ile tek satırdır. Uzun açıklamalar (`Ui.Note`) kendi satırlarında kaydırmaya devam eder.
 - **Denendi** (Rhino 7.1; süreler Rhino'da ölçüldü): Optimise sekmesinin ilk açılışı 1348 ms → 69 ms; durum satırı değişince düzen Optimise'da 1324–1516 ms → 0,3–0,8 ms, Morph'ta 893 ms → 0,3 ms. 90 değerlendirmelik aramada takılma 58 → 1 (0,75 s, başta gövdenin dışa aktarılması); arama bitince boşta takılma yok. Arama sonucu değişmedi: kayıt dosyası bayt bayt aynı. Derleyici 0 uyarı, 0 hata.
+- **Açık depo ve belgeler:** tanıtım ve kullanım kılavuzu (`docs/HullOpt_Kullanim_Kilavuzu_v0.5.2.pdf`) ve kılavuzun örnek gövdesi (`docs/ornek`): parabolik gövdeyi Rhino'da kuran betik ve NURBS verisi.
 
 ## Eklenti 0.5.1 · motor 0.6.0 — 02.11.2026
 

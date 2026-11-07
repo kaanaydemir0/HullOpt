@@ -34,7 +34,7 @@ SAME_CANDIDATE = 1e-12
 PROGRESS_INTERVAL_S = 1.0
 
 # Default bounds: fraction modes as fractions, metre modes as fractions of the baseline LWL or draft.
-# Starting values from the first test hull's constrained search (STUDY-002 upper bounds), with a
+# Starting values from the first test hull's constrained search (its upper bounds), with a
 # smaller reverse range; they are not validated limits.
 DEFAULT_BOUNDS = {
     "lack_aft": (-0.0005, 0.0005, "lwl"),
